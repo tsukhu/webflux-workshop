@@ -35,7 +35,8 @@ public class StockQuotesApplicationTests {
 				.hasSize(20)
 				// Here we check that all Quotes have a positive price value
 				.consumeWith(allQuotes ->
-						assertThat(allQuotes).allSatisfy(quote -> assertThat(quote.getPrice()).isPositive()));
+						assertThat(allQuotes.getResponseBody())
+							.allSatisfy(quote -> assertThat(((Quote) quote).getPrice()).isPositive()));
 	}
 
 }
